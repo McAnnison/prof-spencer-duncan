@@ -1,5 +1,6 @@
-import { createRootRoute, HeadContent, Outlet, Scripts } from '@tanstack/react-router';
+import { createRootRoute, HeadContent, Link, Outlet, Scripts } from '@tanstack/react-router';
 import { useEffect } from 'react';
+import '../styles.css';
 
 function PreviewHostBridge() {
   useEffect(() => {
@@ -18,13 +19,16 @@ function PreviewHostBridge() {
 
 export function AppErrorComponent({ error }: { error: Error }) {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-950 px-6 text-slate-100">
+    <main className="grid min-h-screen place-items-center px-6 text-slate-100">
       <div className="max-w-lg rounded-2xl border border-rose-500/40 bg-slate-900 p-8 shadow-2xl shadow-rose-500/10">
         <p className="mb-2 text-xs font-semibold uppercase tracking-[0.28em] text-rose-300">Error</p>
         <h1 className="text-2xl font-semibold">Something broke</h1>
         <p className="mt-3 text-sm text-slate-300">{error.message}</p>
+        <Link to="/" className="mt-6 inline-flex rounded-full bg-violet-500 px-4 py-2 text-sm font-medium text-white hover:bg-violet-400">
+          Return home
+        </Link>
       </div>
-    </div>
+    </main>
   );
 }
 
@@ -33,6 +37,7 @@ function RootComponent() {
     <>
       <HeadContent />
       <PreviewHostBridge />
+      <a className="skip-link" href="#main-content">Skip to content</a>
       <div className="min-h-screen bg-slate-950 text-slate-50 antialiased">
         <Outlet />
       </div>
@@ -44,4 +49,14 @@ function RootComponent() {
 export const Route = createRootRoute({
   component: RootComponent,
   errorComponent: AppErrorComponent,
+  head: () => ({
+    meta: [
+      { charSet: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { title: 'Spencer Duncan — Product Designer & Frontend Engineer' },
+      { name: 'description', content: 'Portfolio of Spencer Duncan, a product designer and frontend engineer creating calm, useful digital experiences.' },
+      { name: 'theme-color', content: '#020617' },
+    ],
+    links: [{ rel: 'canonical', href: '/' }],
+  }),
 });
