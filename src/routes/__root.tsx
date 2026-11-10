@@ -19,14 +19,12 @@ function PreviewHostBridge() {
 
 export function AppErrorComponent({ error }: { error: Error }) {
   return (
-    <main className="grid min-h-screen place-items-center px-6 text-slate-100">
-      <div className="max-w-lg rounded-2xl border border-rose-500/40 bg-slate-900 p-8 shadow-2xl shadow-rose-500/10">
-        <p className="mb-2 text-xs font-semibold uppercase tracking-[0.28em] text-rose-300">Error</p>
-        <h1 className="text-2xl font-semibold">Something broke</h1>
-        <p className="mt-3 text-sm text-slate-300">{error.message}</p>
-        <Link to="/" className="mt-6 inline-flex rounded-full bg-violet-500 px-4 py-2 text-sm font-medium text-white hover:bg-violet-400">
-          Return home
-        </Link>
+    <main className="grid min-h-screen place-items-center bg-[#f4f3ee] px-6 text-[#18211f]">
+      <div className="max-w-lg border border-[#d9dcd5] bg-white p-8 shadow-xl">
+        <p className="mb-2 text-xs font-semibold uppercase tracking-[0.28em] text-[#71894e]">Error</p>
+        <h1 className="text-2xl font-semibold">Something went wrong</h1>
+        <p className="mt-3 text-sm text-[#65706b]">{error.message}</p>
+        <Link to="/" className="mt-6 inline-flex rounded-sm bg-[#254b43] px-4 py-3 text-sm font-medium text-white hover:bg-[#183c34]">Return home</Link>
       </div>
     </main>
   );
@@ -38,7 +36,7 @@ function RootComponent() {
       <HeadContent />
       <PreviewHostBridge />
       <a className="skip-link" href="#main-content">Skip to content</a>
-      <div className="min-h-screen bg-slate-950 text-slate-50 antialiased">
+      <div className="min-h-screen antialiased">
         <Outlet />
       </div>
       <Scripts />
@@ -55,8 +53,7 @@ export const Route = createRootRoute({
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { title: 'Spencer Duncan — Product Designer & Frontend Engineer' },
       { name: 'description', content: 'Portfolio of Spencer Duncan, a product designer and frontend engineer creating calm, useful digital experiences.' },
-      { name: 'theme-color', content: '#020617' },
+      { name: 'theme-color', content: '#f4f3ee' },
     ],
-    links: [{ rel: 'canonical', href: '/' }],
   }),
 });
